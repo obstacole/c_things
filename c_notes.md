@@ -12,6 +12,15 @@
 
 # Notes on C
 
+Useful notes for the C language.
+
+Created by: Cole McReynolds
+
+Date Last Updated: 04/17/2020
+
+## Strings
+Library: `<string.h>`
+
 ## Processes
 Libraries: `<unistd.h>`, `sys/wait.h`, `fnctl.h`
 
@@ -35,7 +44,7 @@ Fork call return values
 - 0 - child process
 - positive number - parent process
 
-`wait(&status)` - A system call for the parent to 
+`wait(&status)` - A system call for the parent to
 
 ## Threads
 Library: `<pthread.h>`
@@ -52,13 +61,24 @@ Library: `<pthread.h>`
 ## IO
 Library: `<stdio.h>`
 
-`fopen()`
+`scanf("format string" , &variable to store in)` - a dumb way of reading input from a user, stops reading input after the enter character. It sucks because there is no buffer, so you can get all kinds of problems. Use `fgets()` or `sscanf()`
 
-`open()`
+ISSUES:
 
-`fclose()`
+- When reading in a character, you might need to put a space after the %c to make sure it reads it in properly. You can also substitute %c with %d
+- Reading in strings with spaces is fine, but if you have multiple strings you want to read in, just use fgets()
 
-`close()`
+`fgets(*whereToPutValue, bufferLength, FILE *)` - a buffered way of reading input from a specified location
+
+`fprintf(FILE *, string, format values)` - a way of writing to a specific location
+
+`fopen("file path", "r, w, or a" or FLAGS)` - opens a file stream and returns a `FILE *` pointer
+
+`open("file path", "r, w, or a" or FLAGS)` - opens a file stream and returns an integer corresponding to the file opened
+
+`fclose(FILE *)` - closes a file pointer
+
+`close(int)` - closes a file directory integer
 
 ## Resource Access
 
