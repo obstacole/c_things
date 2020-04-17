@@ -1,15 +1,3 @@
-// notes on threads
-// notes on dup()
-// notes on pipe()
-// notes on fork()
-// notes on semaphores
-// notes on mutexes
-// open and fopen
-
-<!--
-
- -->
-
 # Notes on C
 
 Useful notes for the C language.
@@ -20,6 +8,19 @@ Date Last Updated: 04/17/2020
 
 ## Strings
 Library: `<string.h>`
+
+`strstr(string, substring)` - looks through `string` for `substring` and returns the pointer of the first occurance of the substring. Returns `NULL` if no substring exists
+
+`strlen(string)` - returns the length of the string
+
+`strtok(string, delimiters)` - tokenizes a string based on the delimiters. Returns a pointer to the first tokenized value. Call the function again with `NULL` in place of the string to get the next tokenized value. Will return `NULL` when you reach the end of the tokenized string
+
+`strcpy(newVal, oldVal)` - copies `oldVal` into `newVal`. Think of it as being in the same order as `newVal = oldVal`
+
+`strncat(baseString, toBeAdded)` - concatenates `toBeAdded` to `baseString`
+
+`strcmp(string1, string2)` - compares `string1` to `string2` as if it were `string1 == string2`. Returns 0 if equal, non-zero if not equal
+
 
 ## Processes
 Libraries: `<unistd.h>`, `sys/wait.h`, `fnctl.h`
@@ -87,12 +88,12 @@ ISSUES:
 ### Semaphores
 Library: `<semaphore.h>`
 
-`sem_t`
+`sem_t` - semaphore variable. Usually global
 
-`sem_init`
+`sem_init(&semPointer, isShared, value)` - initializes the semaphore stored in the `semPointer` pointer to `value`. `isShared` tells if the semaphore is shared between processes (NOT THREADS)
 
-`sem_wait`
+`sem_wait(&semaphore)` - suspends the current thread until another thread calls `sem_post()`
 
-`sem_post`
+`sem_post(&semaphore)` - tells the threads that have been suspended by `sem_wait()` that they can continue execution
 
-`sem_destroy`
+`sem_destroy(&semaphore)` - destroys the semaphore
